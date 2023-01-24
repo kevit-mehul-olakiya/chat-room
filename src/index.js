@@ -7,7 +7,7 @@ const { genarateMessage,genarateLocationMessage } = require('./utils/message')
 const {addUsers,getUsers,removeUser,getUserInRoom} = require('./utils/users')
  
 const app = express()
-const PORT = 3000 || process.env.PORT
+const port=  process.env.PORT || 3000 
 const server = http.createServer(app)
  const io = socket(server)
 const publicDirPath = path.join(__dirname, '../public')
@@ -65,6 +65,6 @@ io.on('connection',(socket)=>{
 
 
 
-server.listen(PORT,()=>{
-    console.log(`Server is running on ${PORT}`);
+server.listen(port,()=>{
+    console.log(`Server is running on ${port}`);
 })
