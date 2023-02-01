@@ -5,6 +5,7 @@ const $messageFormInput = $messageForm.querySelector('input')
 const $messageFormButton = $messageForm.querySelector('button')
 const $sendLocation = document.querySelector('#send-location')
 const $message = document.querySelector('#message')
+const  $removeUser = document.querySelector('#remove-user')
 
 // Template
 const messageTemplate = document.querySelector('#message-template').innerHTML
@@ -12,7 +13,24 @@ const locationTemplate = document.querySelector('#location-template').innerHTML
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML
  
 // option
- const {username,room}=Qs.parse(location.search,{ignoreQueryPrefix:true})
+ const {username,createRoom,joinRoom}=Qs.parse(location.search,{ignoreQueryPrefix:true})
+ // check joining choice
+const roomCheck = () =>{
+
+    console.log(createRoom);
+    console.log(joinRoom);
+    
+    if(createRoom && joinRoom){
+        alert("Create a room OR select an existing one")
+        location.href = '/'
+        return
+    }
+    
+    return createRoom ? createRoom : joinRoom
+}
+
+const room = roomCheck()
+console.log('room', room);
 
 const autoscroll = () =>{
     // new message element
@@ -99,6 +117,11 @@ socket.on('roomData',({room,users})=>{
         })
        
     })
+ $removeUser.addEventListener('click',()=>{
+    console.log('remove user')
+  location.href = '/'
+   
+ })
 
 socket.emit('join',{username,room},(error)=>{
 if (error) {

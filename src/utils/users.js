@@ -34,17 +34,21 @@ const removeUser = (id)=>{
     }
 }
 
-const getUsers= (id) =>{
+const getUser= (id) =>{
     // my code 
 //  const user =   users.find((user)=> user.id ===id)
 // return user || undefined
 return  users.find((user)=> user.id ===id)
 }
 
+// get all users
+const getUsers = () => {
+    return users
+}
 const getUserInRoom = (room) =>{
     // my code
     // const roomUser = []
-    // for (let i = 0; i < users.length; i++) {
+    // for (let i = 0; i < users.length; i++) { 
     //   if (users[i].room === room) {
     //     roomUser.push(users[i])
     //   }   
@@ -55,6 +59,7 @@ const getUserInRoom = (room) =>{
 
 module.exports = {
     addUsers,
+    getUser,
     getUsers,
     removeUser,
     getUserInRoom
